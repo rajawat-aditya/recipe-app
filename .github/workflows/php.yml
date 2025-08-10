@@ -16,7 +16,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - uses: actions/setup-node@v21.6.1
+    - uses: actions/setup-node@latest
 
     - name: Validate composer.json and composer.lock
       run: composer validate --strict
