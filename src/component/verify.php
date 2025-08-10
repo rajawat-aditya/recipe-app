@@ -1,8 +1,11 @@
 <?php 
 require_once __DIR__ . '/../../vendor/autoload.php';
 // Load .env
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
-$dotenv->load();
+// $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
+// $dotenv->load();
+
+$_ENV['Google_Client_ID'] = getenv('GOOGLE_CLIENT_ID');
+$_ENV['Google_Client_Secret'] = getenv('GOOGLE_CLIENT_SECRET');
 
 
 function base64_encode_html_image($img_file, $cache = false, $ext = null)
@@ -76,7 +79,7 @@ function download_and_cache_profile_picture($picture_url, $user_id) {
 $client = new Google\Client;
 $client->setClientId($_ENV['Google_Client_ID']);
 $client->setClientSecret($_ENV['Google_Client_Secret']);
-$client->setRedirectUri('http://localhost/index.php/ap/verify');
+$client->setRedirectUri('https://recipe-app-two-sable.vercel.app/index.php/ap/verify');
 $client->addScope("email");
 $client->addScope("profile");
 
