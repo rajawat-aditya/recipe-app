@@ -44,15 +44,15 @@ if (!isset($_SESSION['user']) && !in_array($uri, $publicPaths)) {
 <html lang="en">
 
 <head>
-    <?php include __DIR__. './component/head.php'; echo $title = Head::render($title . ' | Powered by Slew'); ?>
+    <?php include __DIR__. '/component/head.php'; echo $title = Head::render($title . ' | Powered by Slew'); ?>
 </head>
 
 
 
 <body class="h-screen ">
-    <?php if(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) == '/index.php/ap/logout') : include './component/logout.php'; ?>
-    <?php elseif(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) == '/index.php/ap/verify') : include './component/verify.php'; ?>
-    <?php elseif($_SERVER['REQUEST_URI'] == '/index.php/ap/signin') : include './component/signin.php'; ?>
+    <?php if(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) == '/index.php/ap/logout') : include __DIR__ . '/component/logout.php'; ?>
+    <?php elseif(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) == '/index.php/ap/verify') : include __DIR__ . '/component/verify.php'; ?>
+    <?php elseif($_SERVER['REQUEST_URI'] == '/index.php/ap/signin') : include __DIR__ . '/component/signin.php'; ?>
     <?php else: ?>
     <div class="flex-row flex items-center bg-bg-white min-h-screen w-full">
         <!-- sidebar  -->
@@ -211,8 +211,8 @@ if (!isset($_SESSION['user']) && !in_array($uri, $publicPaths)) {
                 </div>
             </div>
         </div>
-        <?php if($_SERVER['REQUEST_URI'] == '/index.php/settings') : include './component/settings.php'; ?>
-        <?php elseif($_SERVER['REQUEST_URI'] == '/index.php/activities') : include './component/activities.php'; ?>
+        <?php if($_SERVER['REQUEST_URI'] == '/index.php/settings') : include __DIR__ . '/component/settings.php'; ?>
+        <?php elseif($_SERVER['REQUEST_URI'] == '/index.php/activities') : include __DIR__ . '/component/activities.php'; ?>
         <?php else: ?>
         <!-- main content -->
         <div class="h-screen bg-bg-white w-full max-md:px-4 max-sm:px-0">
