@@ -11,7 +11,13 @@
     }
   ],
   "routes": [
-    { "src": "/(.*)", "dest": "/src/index.php" }
+    { "src": "/chat.php", "dest": "/src/chat.php" },
+    { "src": "/title.php", "dest": "/src/title.php" },
+    { "src": "/", "dest": "/src/index.php" },
+    { "src": "/output.css", "dest": "/src/output.css" },
+    { "src": "/index.js", "dest": "/src/index.js" },
+    { "src": "/title.js", "dest": "/src/title.js" },
+    { "src": "/main.js", "dest": "/src/main.js" }
   ],
    "buildCommand": "composer install --no-dev --optimize-autoloader && npm install"
 }
