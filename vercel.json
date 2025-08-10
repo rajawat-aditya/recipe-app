@@ -17,7 +17,8 @@
     { "src": "/output.css", "dest": "/src/output.css" },
     { "src": "/index.js", "dest": "/src/index.js" },
     { "src": "/title.js", "dest": "/src/title.js" },
-    { "src": "/main.js", "dest": "/src/main.js" }
+    { "src": "/main.js", "dest": "/src/main.js" },
+    { "src": "/index\\.php(/.*)?", "dest": "/src/index.php" }
   ],
    "buildCommand": "composer install --no-dev --optimize-autoloader && npm install"
 }
