@@ -11,35 +11,43 @@ permissions:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-node@v4
-      with: 
-        node-version: '21.6.1'
+      - uses: actions/checkout@v4
 
-    - name: Validate composer.json and composer.lock
-      run: composer validate
+      # Setup PHP for Composer
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mbstring, intl, pdo_mysql
+          coverage: none
 
-    - name: Cache Composer packages
-      id: composer-cache
-      uses: actions/cache@v3
-      with:
-        path: vendor
-        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-php-
+      # Setup Node.js for NPM
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '21.6.1'
 
-    - name: Install dependencies
-      run: composer install --prefer-dist --no-progress
+      # Validate Composer config
+      - name: Validate composer.json and composer.lock
+        run: composer validate
 
-    - name: Install NPM Packages
-      run: npm ci
+      # Cache Composer packages
+      - name: Cache Composer packages
+        id: composer-cache
+        uses: actions/cache@v3
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
 
-    # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
-    # Docs: https://getcomposer.org/doc/articles/scripts.md
+      # Install PHP dependencies
+      - name: Install PHP dependencies
+        run: composer install --prefer-dist --no-progress --no-suggest
 
-    # - name: Run test suite
-    #   run: composer run-script test
+      # Install Node.js dependencies
+      - name: Install NPM packages
+        run: npm ci
+
