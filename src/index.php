@@ -44,7 +44,7 @@ if (!isset($_SESSION['user']) && !in_array($uri, $publicPaths)) {
 <html lang="en">
 
 <head>
-    <?php include './component/head.php'; echo $title = Head::render($title . ' | Powered by Slew'); ?>
+    <?php include __DIR__. './component/head.php'; echo $title = Head::render($title . ' | Powered by Slew'); ?>
 </head>
 
 
