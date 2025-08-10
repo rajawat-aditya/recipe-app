@@ -11,7 +11,7 @@
     }
   ],
   "routes": [
-    { "src": "/(.*)", "dest": "/index.php" }
+    { "src": "/(.*)", "dest": "/src/index.php" }
   ],
    "buildCommand": "composer install --no-dev --optimize-autoloader && npm install"
 }
