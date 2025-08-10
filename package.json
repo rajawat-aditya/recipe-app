@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.11",
+    "dotenv": "^17.2.1",
+    "openai": "^5.12.1",
+    "tailwindcss": "^4.1.11"
+  },
+  "type": "module"
+}

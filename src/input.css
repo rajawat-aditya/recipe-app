@@ -1,0 +1,224 @@
+@import "tailwindcss";
+
+@source "./**/*.php";
+@source "./**/*.js";
+@source "./**/*.css";
+@source "./**/*.html";
+
+@theme {
+    --font-qurova: 'Aktura', serif;
+    --font-kinds-sans: 'Geist', sans-serif;
+
+    /* Colors for background */
+    --color-bg-white: #fff;
+    --color-bg-white-smoke: #f7f7f7;
+    --color-bg-lemon: #fffc4d;
+    --color-bg-linen: #f2eee4;
+    --color-bg-lime: #beff4d;
+    --color-bg-grey: #dfdfdf;
+    --color-bg-golden: #ffd731;
+    --color-bg-perl: #e9ccff;
+    --color-bg-sky: #6de6f8;
+    --color-bg-lavender: #dbcdeb;
+    --color-bg-orange: #f79f4d;
+    --color-bg-deep-sky: #00bfff;
+    --color-bg-pink: #ff6ada;
+    --color-bg-orange-peel: #ff7a00;
+    --color-bg-azure: #4da2ff;
+    --color-bg-purple: #5c4ade;
+    --color-bg-green-dark: #3e512f;
+    --color-bg-charcoal: #31404e;
+    --color-bg-rich-navy: #000f1d;
+
+    /* Colors for text */
+    --color-text-white: #f7f7f7;
+    --color-text-green: #4df766;
+    --color-text-sky: #6de6f8;
+    --color-text-mint: #55db9c;
+    --color-text-cyan: #00bfff;
+    --color-text-tint-blue: #4da2ff;
+    --color-text-slate-grey: #7c838a;
+    --color-text-charcoal: #61686d;
+    --color-text-black: #000;
+    --color-text-rich-navy: #000f1d;
+
+    /* Colors for borders */
+    --color-border-grey: #cccccc;
+    --color-border-silver: #bbbec0;
+    --color-border-slate: #7c838a;
+    --color-border-steel: #31404e;
+    --color-border-rich-navy: #000f1d;
+
+    --animate-sidebaranimation: slide-in 0.5s ease forwards;
+    --animate-slide-in: slide-in 0.5s ease forwards;
+    --animate-slide-out: slide-out 0.5s ease forwards;
+
+    @keyframes slide-out {
+        from {
+            left: 0px;
+        }
+
+        to {
+            left: -272px;
+        }
+    }
+
+    @keyframes slide-in {
+        from {
+            left: -272px;
+        }
+
+        to {
+            left: 0px;
+        }
+    }
+}
+
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+@layer base {
+
+    body {
+        @apply font-kinds-sans;
+        @apply list-disc list-inside;
+    }
+
+
+    hr {
+        @apply mt-7 mb-7 bg-bg-grey;
+    }
+
+    ul {
+        @apply list-disc list-inside;
+        list-style-type: disc;
+        list-style: disc;
+    }
+
+    ol {
+        list-style-type: decimal;
+        list-style: decimal;
+    }
+
+    #message-container::-webkit-scrollbar {
+        display: none;
+    }
+
+    #message-container {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    #chat h3 {
+        @apply text-[18px] font-bold pb-4;
+    }
+
+    #chat h4 {
+        @apply text-[16px] font-semibold italic pb-3 pt-3;
+    }
+
+    table {
+        /* ChatGPT-like white theme table styling (global) */
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.875rem;
+        /* text-sm */
+        line-height: 1.625;
+        /* leading-relaxed */
+        table-layout: auto;
+    }
+
+    @media (min-width: 768px) {
+        table {
+            table-layout: fixed;
+        }
+    }
+
+    thead {
+        top: 0;
+        /* top-0 */
+        z-index: 10;
+        /* z-10 */
+        background-color: var(--color-bg-white-smoke);
+        /* neutral-50 */
+    }
+
+    thead th {
+        font-weight: 500;
+        /* font-medium */
+        color: var(--color-text-black);
+        text-align: left;
+        /* text-left */
+        padding: 0.5rem 1rem;
+        /* py-2 px-4 */
+        border-bottom: 1px solid var(--color-border-grey);
+        /* neutral-200 */
+    }
+
+    tbody tr {
+        border-bottom: 1px solid var(--color-border-grey);
+        /* neutral-100 */
+    }
+
+    tbody tr:last-child {
+        border-bottom: 0;
+    }
+
+    td {
+        vertical-align: top;
+        /* align-top */
+        padding: 0.5rem 1rem;
+        /* py-2 px-4 */
+        color: #262626;
+        /* neutral-800 */
+    }
+
+    caption {
+        caption-side: bottom;
+        /* caption-bottom */
+        margin-top: 0.75rem;
+        /* mt-3 */
+        font-size: 0.75rem;
+        /* text-xs */
+        line-height: 1rem;
+        color: #737373;
+        /* neutral-500 */
+    }
+
+    td code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        /* font-mono */
+        font-size: 13px;
+        /* text-[13px] */
+        padding: 0.125rem 0.25rem;
+        /* px-1 py-0.5 approx */
+        border-radius: 0.25rem;
+        /* rounded */
+        background-color: rgba(229, 229, 229, 0.7);
+        /* neutral-200/70 */
+        color: #262626;
+        /* neutral-800 */
+    }
+
+    td pre {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        font-size: 13px;
+        padding: 0.75rem;
+        /* p-3 */
+        border-radius: 0.25rem;
+        /* rounded */
+        background-color: #171717;
+        /* neutral-900 */
+        color: #f5f5f5;
+        /* neutral-100 */
+        overflow-x: auto;
+        margin: 0;
+        /* reset */
+    }
+
+}
