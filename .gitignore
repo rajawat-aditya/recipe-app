@@ -3,3 +3,7 @@
 /src/.env
 /src/cache
 .serverless
+/.vercel
+vercel.json
+serverless.yml
+.vercelignore
