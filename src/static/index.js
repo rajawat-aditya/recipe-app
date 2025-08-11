@@ -1,6 +1,6 @@
 
 import * as smd from "https://cdn.jsdelivr.net/npm/streaming-markdown/smd.min.js"
-import { giveChatName } from './title.js';
+import { giveChatName } from 'https://s3.ap-south-1.amazonaws.com/static.kith/static/title.js';
 
 let chatbox, form, promptinput, chatsDiv, subspan;
 let chatId = window.location.pathname.split('/').pop();
@@ -120,7 +120,7 @@ async function handleChatSubmit(e){
     cursor.className = 'mt-[-36px] ml-4 px-4 break-words';
     cursor.id = `${rand}`;
     var icon = `<div class="w-8 h-8 ml-[-10px]">
-                                <img src="/static/brand-short-logo.png" class="select-none pointer-events-none mt-1 rounded-[50%]" alt="taste_ai" width="36" height="36">
+                                <img src="https://s3.ap-south-1.amazonaws.com/static.kith/static/brand-short-logo.png" class="select-none pointer-events-none mt-1 rounded-[50%]" alt="taste_ai" width="36" height="36">
                             </div>`;
     const optionsDiv = document.createElement('div');
     optionsDiv.id = 'options';
@@ -154,7 +154,7 @@ async function handleChatSubmit(e){
     const parser = smd.parser(renderer);
 
 
-    const response = await fetch('chat.php', {
+    const response = await fetch('https://50zewoomz6.execute-api.ap-south-1.amazonaws.com/chat.php', {
         method: "POST",
         headers: { 'Content-type': 'application/x-www-form-urlencoded', 'X-Bearer-Token': 'Ansh by Slew' },
         body: new URLSearchParams({ prompt: `${usertext} ${occasion != null ? 'Occasion: ' + occasion : ''}`, chat_history: JSON.stringify(messages.slice(-10)) }),

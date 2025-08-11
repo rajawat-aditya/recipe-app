@@ -1,27 +1,46 @@
 service: app
 
-# Set your team ID if you are using Bref Cloud
-#bref:
-#    team: my-team-id
-
 provider:
     name: aws
-    region: us-east-1
+    region: ap-south-1
 
 plugins:
     - ./vendor/bref/bref
 
 functions:
     api:
-        handler: index.php
+        handler: src/index.php
         description: ''
         runtime: php-82-fpm
-        timeout: 28 # in seconds (API Gateway has a timeout of 29 seconds)
+        timeout: 28 
         events:
-            -   httpApi: '*'
+            - httpApi:
+                path: /{proxy+}
+                method: ANY
+
+    api2:
+        handler: src/chat.php
+        description: ''
+        runtime: php-82-fpm
+        timeout: 28 
+        events:
+            - httpApi:
+                path: /chat.php
+                method: ANY
+
+    api3:
+        handler: src/title.php
+        description: ''
+        runtime: php-82-fpm
+        timeout: 28 
+        events:
+            - httpApi:
+                path: /title.php
+                method: ANY
 
 # Exclude files from deployment
 package:
     patterns:
+        - '!.github/**'
+        - '!src/static/**'
         - '!node_modules/**'
-        - '!tests/**'

@@ -22,7 +22,7 @@ chatMessages.forEach(message => {
         const uniqueId = crypto.randomUUID();
         chatContainer.innerHTML += `
                                     <div class="flex flex-col gap-3 w-full max-w-fit px-3 pt-4 pb-4"><div class="w-8 h-8 ml-[-10px]">
-                                <img src="/static/brand-short-logo.png" class="select-none pointer-events-none mt-1 rounded-[50%]" alt="taste_ai" width="36" height="36">
+                                <img src="https://s3.ap-south-1.amazonaws.com/static.kith/static/brand-short-logo.png" class="select-none pointer-events-none mt-1 rounded-[50%]" alt="taste_ai" width="36" height="36">
                             </div><div class="mt-[-36px] ml-4 px-4 break-words" id="${uniqueId}">${htmlContent}</div><div id="options" class="pl-4 flex items-center h-[52px] select-none opacity-100">
                                 <div class="w-8 h-[48px] flex items-center">
                                     <span class="material-symbols-rounded hover:bg-bg-grey p-1.5 rounded-[50%] cursor-pointer" style="font-size: 18px !important;"

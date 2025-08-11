@@ -16,10 +16,10 @@ if (empty($_POST['prompt'])) {
 require_once '../vendor/autoload.php';
 
 // Load .env
-// $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-// $dotenv->load();
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 
-$token = getenv('HF_TOKEN') ?? die('Token missing');
+$token = $_ENV['HF_TOKEN'] ?? die('Token missing');
 
 // Set headers for SSE-like streaming
 header('Content-Type: text/event-stream');

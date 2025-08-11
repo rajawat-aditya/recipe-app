@@ -14,16 +14,13 @@ if (!isset($_SESSION['user']) && !$isLoginPage) {
 require_once __DIR__ . '/../../vendor/autoload.php';
 
 // Load .env
-// $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
-// $dotenv->load();
-
-$_ENV['Google_Client_ID'] = getenv('GOOGLE_CLIENT_ID');
-$_ENV['Google_Client_Secret'] = getenv('GOOGLE_CLIENT_SECRET');
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
+$dotenv->load();
 
 $client = new Google\Client;
 $client->setClientId($_ENV['Google_Client_ID']);
 $client->setClientSecret($_ENV['Google_Client_Secret']);
-$client->setRedirectUri('https://recipe-app-two-sable.vercel.app/index.php/ap/verify');
+$client->setRedirectUri('https://50zewoomz6.execute-api.ap-south-1.amazonaws.com/index.php/ap/verify');
 $client->addScope("email");
 $client->addScope("profile");
 

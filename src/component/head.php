@@ -9,8 +9,8 @@ class Head{
             <title><?php echo $title; ?></title>
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
             rel="stylesheet">
-            <link rel="stylesheet" href="/output.css">
-             <link rel="icon" type="image/x-icon" href="/static/fav.png">
+            <link rel="stylesheet" href="https://s3.ap-south-1.amazonaws.com/static.kith/static/output.css">
+             <link rel="icon" type="image/x-icon" href="https://s3.ap-south-1.amazonaws.com/static.kith/static/fav.png">
              <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
             <link rel="stylesheet"
                 href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />

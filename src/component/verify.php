@@ -1,26 +1,23 @@
 <?php 
 require_once __DIR__ . '/../../vendor/autoload.php';
 // Load .env
-// $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
-// $dotenv->load();
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
+$dotenv->load();
 
-$_ENV['Google_Client_ID'] = getenv('GOOGLE_CLIENT_ID');
-$_ENV['Google_Client_Secret'] = getenv('GOOGLE_CLIENT_SECRET');
+// $_ENV['Google_Client_ID'] = getenv('GOOGLE_CLIENT_ID');
+// $_ENV['Google_Client_Secret'] = getenv('GOOGLE_CLIENT_SECRET');
 
-
-function base64_encode_html_image($img_file, $cache = false, $ext = null)
-{
+function base64_encode_html_image($img_file, $cache = false, $ext = null) {
     if (!is_file($img_file)) {
         return false;
     }
 
-    // Validate that it's actually an image
     $image_info = getimagesize($img_file);
     if ($image_info === false) {
-        return false; // Not a valid image
+        return false;
     }
 
-    $b64_file = "{$img_file}.b64";
+    $b64_file = sys_get_temp_dir() . '/' . basename($img_file) . '.b64';
     if ($cache && is_file($b64_file)) {
         $b64 = file_get_contents($b64_file);
         if ($b64 === false) {
@@ -31,18 +28,15 @@ function base64_encode_html_image($img_file, $cache = false, $ext = null)
         if ($bin === false) {
             return false;
         }
-        
+
         $b64 = base64_encode($bin);
 
         if ($cache) {
-            if (file_put_contents($b64_file, $b64) === false) {
-                // Cache write failed, but continue
-            }
+            @file_put_contents($b64_file, $b64);
         }
     }
 
     if (!$ext) {
-        // Use MIME type from getimagesize for better accuracy
         $mime_type = $image_info['mime'];
         $ext = str_replace('image/', '', $mime_type);
     }
@@ -50,36 +44,32 @@ function base64_encode_html_image($img_file, $cache = false, $ext = null)
     return "data:image/{$ext};base64,{$b64}";
 }
 
-
-// Function to download and cache Google profile picture
 function download_and_cache_profile_picture($picture_url, $user_id) {
     if (empty($picture_url)) {
         return false;
     }
-    
-    $cache_dir = __DIR__ . '/../cache/profile_pictures/';
+
+    $cache_dir = sys_get_temp_dir() . '/profile_pictures/';
     if (!is_dir($cache_dir)) {
         mkdir($cache_dir, 0755, true);
     }
-    
-    $file_extension = 'jpg'; // Google usually provides JPG
-    $local_file = $cache_dir . $user_id . '.' . $file_extension;
-    
-    // Download the image
-    $image_data = file_get_contents($picture_url);
+
+    $local_file = $cache_dir . $user_id . '.jpg';
+
+    $image_data = @file_get_contents($picture_url);
     if ($image_data !== false) {
         file_put_contents($local_file, $image_data);
         return base64_encode_html_image($local_file);
     }
-    
-    return $picture_url; // Fallback to URL if download fails
+
+    return $picture_url;
 }
 
 
 $client = new Google\Client;
 $client->setClientId($_ENV['Google_Client_ID']);
 $client->setClientSecret($_ENV['Google_Client_Secret']);
-$client->setRedirectUri('https://recipe-app-two-sable.vercel.app/index.php/ap/verify');
+$client->setRedirectUri('https://50zewoomz6.execute-api.ap-south-1.amazonaws.com/index.php/ap/verify');
 $client->addScope("email");
 $client->addScope("profile");
 
@@ -96,6 +86,6 @@ if (isset($_GET['code'])) {
         'email' => $userInfo->email,
         'picture' => download_and_cache_profile_picture($userInfo->picture, $userInfo->id),
     ];
-    header('Location: /index.php');
+    ?> <script>window.location.href = "https://50zewoomz6.execute-api.ap-south-1.amazonaws.com/";</script> <?php
 }
 ?>
