@@ -7,6 +7,9 @@ $dotenv->load();
 // $_ENV['Google_Client_ID'] = getenv('GOOGLE_CLIENT_ID');
 // $_ENV['Google_Client_Secret'] = getenv('GOOGLE_CLIENT_SECRET');
 
+echo $_ENV['Google_Client_ID'];
+echo $_ENV['Google_Client_Secret'];
+
 function base64_encode_html_image($img_file, $cache = false, $ext = null) {
     if (!is_file($img_file)) {
         return false;
@@ -69,7 +72,7 @@ function download_and_cache_profile_picture($picture_url, $user_id) {
 $client = new Google\Client;
 $client->setClientId($_ENV['Google_Client_ID']);
 $client->setClientSecret($_ENV['Google_Client_Secret']);
-$client->setRedirectUri('https://50zewoomz6.execute-api.ap-south-1.amazonaws.com/index.php/ap/verify');
+$client->setRedirectUri('http://localhost/index.php/ap/verify');
 $client->addScope("email");
 $client->addScope("profile");
 
@@ -86,6 +89,6 @@ if (isset($_GET['code'])) {
         'email' => $userInfo->email,
         'picture' => download_and_cache_profile_picture($userInfo->picture, $userInfo->id),
     ];
-    ?> <script>window.location.href = "https://50zewoomz6.execute-api.ap-south-1.amazonaws.com/";</script> <?php
+    ?> <script>window.location.href = "http://localhost/";</script> <?php
 }
 ?>

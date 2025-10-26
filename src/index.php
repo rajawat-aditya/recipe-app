@@ -48,7 +48,6 @@ if (!isset($_SESSION['user']) && !in_array($uri, $publicPaths)) {
 </head>
 
 
-
 <body class="h-screen ">
     <?php if(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) == '/index.php/ap/logout') : include __DIR__ . '/component/logout.php'; ?>
     <?php elseif(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) == '/index.php/ap/verify') : include __DIR__ . '/component/verify.php'; ?>
@@ -61,7 +60,7 @@ if (!isset($_SESSION['user']) && !in_array($uri, $publicPaths)) {
             <div>
                 <div class="flex items-center justify-between">
                     <span>
-                        <img src="https://s3.ap-south-1.amazonaws.com/static.kith/static/brand-short-logo.png" class="rounded-[50%]" alt="brand_logo"
+                        <img src="/static/brand-short-logo.png" class="rounded-[50%]" alt="brand_logo"
                             style="width: 28px; height: 28px;">
                     </span>
                     <div class="max-sm:block hidden select-none">
@@ -163,7 +162,7 @@ if (!isset($_SESSION['user']) && !in_array($uri, $publicPaths)) {
                             </div>
                         <h4 class="text-text-slate-grey text-[14px] mb-2">Chats</h4>
                         <script type="module">
-                            import { giveChatName } from 'https://s3.ap-south-1.amazonaws.com/static.kith/static/title.js';
+                            import { giveChatName } from '/static/title.js';
                             const chatIds = Object.keys(localStorage).filter(key => key.startsWith('chat_'));
                             const chatsDiv = document.getElementById('chatsDiv');
                             chatIds.forEach(chatId => {
@@ -245,7 +244,7 @@ if (!isset($_SESSION['user']) && !in_array($uri, $publicPaths)) {
                             </h1>
                         </div>
                         
-                        <script type="module" src="https://s3.ap-south-1.amazonaws.com/static.kith/static/main.js"></script>
+                        <script type="module" src="/static/main.js"></script>
                     </div>
                 </div>
 
@@ -387,11 +386,11 @@ if (!isset($_SESSION['user']) && !in_array($uri, $publicPaths)) {
                 </form>
                 <div class="flex whitespace-nowrap items-center justify-center mt-2 select-none pointer-events-none mb-4 max-sm:flex-col max-sm:pb-4 max-sm:gap-2">
                     <span class="text-sm text-text-slate-grey max-sm:text-xs break-words"> © 2025 Slew. All rights reserved. Kith is a product of Slew. </span>
-                    <span class="text-sm text-text-slate-grey flex items-center justify-center pl-[3px]">Powered By <img class="h-[15px] pl-1" src="https://s3.ap-south-1.amazonaws.com/static.kith/static/slew_purple_logo.webp" alt="slew_logo_purple"></span>
+                    <span class="text-sm text-text-slate-grey flex items-center justify-center pl-[3px]">Powered By <img class="h-[15px] pl-1" src="/static/slew_purple_logo.webp" alt="slew_logo_purple"></span>
                 </div>
             </div>
         </div>
-        <script type="module" src="https://s3.ap-south-1.amazonaws.com/static.kith/static/index.js"></script>
+        <script type="module" src="/static/index.js"></script>
 
 
         <?php endif; ?>

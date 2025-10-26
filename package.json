@@ -7,6 +7,6 @@
   },
   "type": "module",
   "devDependencies": {
-    "serverless-lift": "^1.31.0"
+    "serverless-lift": "^1.1.2"
   }
 }

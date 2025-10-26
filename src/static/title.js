@@ -1,5 +1,5 @@
 export async function giveChatName(messages) {
-    const response = await fetch('https://50zewoomz6.execute-api.ap-south-1.amazonaws.com/title.php', {
+    const response = await fetch('/title.php', {
         method: "POST",
         headers: { 'Content-type': 'application/x-www-form-urlencoded', 'X-Bearer-Token': 'Ansh by Slew' },
         body: new URLSearchParams({ chat_history: JSON.stringify(messages) }),
